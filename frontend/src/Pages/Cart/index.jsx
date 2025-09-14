@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getCartItems, updateCartItem, removeCartItem, clearCart, createEnquiry, placeOrderWithDetailedAddress } from '../../utils/supabaseApi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
@@ -22,7 +22,6 @@ const Cart = () => {
   const [enquiryStatus, setEnquiryStatus] = useState(null); // success | error | null
   const [enquiryLoading, setEnquiryLoading] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const navigate = useNavigate();
 
   /* console.log(currentUser) */
 
@@ -37,16 +36,6 @@ const Cart = () => {
     }
     fetchCart();
   }, [user_id]);
-
-
-  const handleProceedToCheckout = () => {
-    if (cartItems.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-    // Navigate to the map page
-    navigate('/checkout/select-location');
-  };
 
 
   /* console.log(cartItems) */
@@ -72,7 +61,7 @@ const Cart = () => {
       }));
 
       const res = await axios.post(
-        "https://ecommerceclone1.onrender.com/api/check/check-cart-availability",
+        "https://ecommerce-8342.onrender.com/api/check/check-cart-availability",
         {
           latitude,
           longitude,
@@ -201,7 +190,7 @@ const Cart = () => {
 
     try {
       // Step 1: Create order from backend
-      const res = await axios.post("https://ecommerceclone1.onrender.com/api/payment/create-order", {
+      const res = await axios.post("https://ecommerce-8342.onrender.com/api/payment/create-order", {
         amount: grandTotal
       });
 
@@ -238,7 +227,7 @@ const Cart = () => {
 
           /*  console.log(response) */
           // Step 3: Verify payment signature before saving order
-          const verification = await axios.post("https://ecommerceclone1.onrender.com/api/payment/verify-payment", {
+          const verification = await axios.post("https://ecommerce-8342.onrender.com/api/payment/verify-payment", {
             razorpay_payment_id,
             razorpay_order_id,
             razorpay_signature,
@@ -440,12 +429,6 @@ const Cart = () => {
                             <h3 className="text-gray-900 line-clamp-2 product-name text-xs leading-snug">
                               {item.name}
                             </h3>
-                            {/* NEW: Out of Stock Warning */}
-                            {!item.products.in_stock && (
-                              <p className="text-red-500 text-xs font-bold mt-1">
-                                Out of Stock
-                              </p>
-                            )}
                             <p className="text-xs text-gray-600">
                               {item.uom || "1 Variable"}
                             </p>
@@ -633,7 +616,7 @@ const Cart = () => {
                   </div>
                 </div>
 
-                {/* {orderAddress && (
+                {orderAddress && (
                   <div className="border p-3 rounded mb-4">
                     <div className="flex justify-between items-center">
                       <h3 className="font-semibold">Delivery Address</h3>
@@ -653,16 +636,16 @@ const Cart = () => {
                       <p>{orderAddress.state} - {orderAddress.postal_code}</p>
                     </div>
                   </div>
-                )} */}
+                )}
 
                 <div className="space-y-4">
                   <button
-                    onClick={handleProceedToCheckout}
+                    onClick={handleRazorpayPayment}
                     className={`block w-full bg-primary text-white text-center py-3 px-4 rounded-md hover:bg-primary-dark transition duration-200 ${enquiryLoading ? "opacity-60 cursor-not-allowed" : ""}`}
                     style={{ backgroundColor: "#3f51b5" }}
                     disabled={enquiryLoading}
                   >
-                    Select Delivery Address
+                    Place an Order
                   </button>
 
 
