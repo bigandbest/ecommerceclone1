@@ -16,7 +16,7 @@ export default function Notification() {
     // ✅ Fetch notifications
     const fetchNotifications = async () => {
         try {
-            const res = await axios.get("https://ecommerce-8342.onrender.com/api/notifications/collect");
+            const res = await axios.get("https://ecommerceclone1.onrender.com/api/notifications/collect");
             setNotifications(res.data.notifications);
         } catch (err) {
             console.error("Fetch error:", err);
@@ -63,9 +63,9 @@ export default function Notification() {
             };
 
             if (editingId) {
-                await axios.put(`https://ecommerce-8342.onrender.com/api/notifications/update/${editingId}`, payload);
+                await axios.put(`https://ecommerceclone1.onrender.com/api/notifications/update/${editingId}`, payload);
             } else {
-                await axios.post("https://ecommerce-8342.onrender.com/api/notifications/create", payload);
+                await axios.post("https://ecommerceclone1.onrender.com/api/notifications/create", payload);
             }
 
             setForm({ heading: "", description: "", expiry_date: "", imageFile: null });
@@ -81,7 +81,7 @@ export default function Notification() {
     const handleDelete = async (id) => {
         if (!window.confirm("Are you sure you want to delete this notification?")) return;
         try {
-            await axios.delete(`https://ecommerce-8342.onrender.com/api/notifications/delete/${id}`);
+            await axios.delete(`https://ecommerceclone1.onrender.com/api/notifications/delete/${id}`);
             fetchNotifications();
         } catch (err) {
             console.error("Delete error:", err);

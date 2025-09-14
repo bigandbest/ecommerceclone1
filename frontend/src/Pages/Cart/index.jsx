@@ -72,7 +72,7 @@ const Cart = () => {
       }));
 
       const res = await axios.post(
-        "https://ecommerce-8342.onrender.com/api/check/check-cart-availability",
+        "https://ecommerceclone1.onrender.com/api/check/check-cart-availability",
         {
           latitude,
           longitude,
@@ -201,7 +201,7 @@ const Cart = () => {
 
     try {
       // Step 1: Create order from backend
-      const res = await axios.post("https://ecommerce-8342.onrender.com/api/payment/create-order", {
+      const res = await axios.post("https://ecommerceclone1.onrender.com/api/payment/create-order", {
         amount: grandTotal
       });
 
@@ -238,7 +238,7 @@ const Cart = () => {
 
           /*  console.log(response) */
           // Step 3: Verify payment signature before saving order
-          const verification = await axios.post("https://ecommerce-8342.onrender.com/api/payment/verify-payment", {
+          const verification = await axios.post("https://ecommerceclone1.onrender.com/api/payment/verify-payment", {
             razorpay_payment_id,
             razorpay_order_id,
             razorpay_signature,

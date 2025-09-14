@@ -20,7 +20,7 @@ const BusinessPartnerLogin = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://ecommerce-8342.onrender.com/api/business/login",
+        "https://ecommerceclone1.onrender.com/api/business/login",
         formData,
         {
           withCredentials: true,

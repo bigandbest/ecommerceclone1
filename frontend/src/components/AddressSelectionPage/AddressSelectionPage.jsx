@@ -72,7 +72,7 @@ const AddressSelectionPage = () => {
 
     try {
       // Create Razorpay order
-      const res = await axios.post("https://ecommerce-8342.onrender.com/api/payment/create-order", {
+      const res = await axios.post("https://ecommerceclone1.onrender.com/api/payment/create-order", {
         amount: grandTotal
       });
       const { order_id, amount } = res.data;
@@ -88,7 +88,7 @@ const AddressSelectionPage = () => {
         handler: async function (response) {
           const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
 
-          const verification = await axios.post("https://ecommerce-8342.onrender.com/api/payment/verify-payment", {
+          const verification = await axios.post("https://ecommerceclone1.onrender.com/api/payment/verify-payment", {
             razorpay_payment_id,
             razorpay_order_id,
             razorpay_signature,

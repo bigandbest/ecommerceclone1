@@ -23,7 +23,7 @@ export function NotificationProvider({ children }) {
     const fetchNotifications = async () => {
         try {
             const res = await axios.get(
-                "https://ecommerce-8342.onrender.com/api/notifications/collect"
+                "https://ecommerceclone1.onrender.com/api/notifications/collect"
             );
             const fetched = res.data.notifications;
 
