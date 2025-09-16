@@ -13,7 +13,7 @@ import {
 } from "react-icons/ri";
 import { FaUsers, FaAngleDown, FaList, FaPlus, FaTag, FaDatabase, FaSection } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { HiArchive } from "react-icons/hi2"; 
+import { HiArchive } from "react-icons/hi"; 
 import { MdCategory } from "react-icons/md";
 import { GiTargetPoster } from "react-icons/gi";
 import { Tooltip } from "@mantine/core";
