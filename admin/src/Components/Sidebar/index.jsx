@@ -11,7 +11,7 @@ import {
   RiShutDownLine,
   RiPrinterFill,
 } from "react-icons/ri";
-import { FaUsers, FaAngleDown, FaList, FaPlus, FaTag, FaDatabase, FaStore } from "react-icons/fa";
+import { FaUsers, FaAngleDown, FaList, FaPlus, FaTag, FaDatabase, FaSection } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { HiArchive } from "react-icons/hi";
 import { MdCategory } from "react-icons/md";
@@ -107,8 +107,8 @@ const Sidebar = ({ isOpen = true }) => {
       path: "/banners",
     },
     {
-      title: "Stores",
-      icon: <FaStore />,
+      title: "Section",
+      icon: <FaSection />,
       path: "/stores",
     },
 

@@ -100,7 +100,7 @@ export default function StoreAdmin() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Manage Stores</h1>
+      <h1 className="text-2xl font-bold mb-4">Manage Section</h1>
 
       <form onSubmit={handleSubmit} className="mb-6 space-y-3 bg-gray-100 p-4 rounded">
         <input
