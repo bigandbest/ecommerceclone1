@@ -15,7 +15,7 @@ export default function StoreAdmin() {
   const [editingId, setEditingId] = useState(null);
 
   // The base URL for your API endpoints.
-  const API_BASE_URL = "http://localhost:8000/api/stores";
+  const API_BASE_URL = "https://ecommerceclone1.onrender.com/api/stores";
 
   // --- API Handlers ---
   
