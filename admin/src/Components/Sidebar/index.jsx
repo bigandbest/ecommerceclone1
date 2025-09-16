@@ -13,7 +13,7 @@ import {
 } from "react-icons/ri";
 import { FaUsers, FaAngleDown, FaList, FaPlus, FaTag, FaDatabase, FaStore } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { HiArchive } from "react-icons/hi2"; 
+import { HiArchive } from "react-icons/hi2";
 import { MdCategory } from "react-icons/md";
 import { GiTargetPoster } from "react-icons/gi";
 import { Tooltip } from "@mantine/core";
@@ -93,7 +93,6 @@ const Sidebar = ({ isOpen = true }) => {
     {
       title: "Products",
       icon: <HiArchive />,
-    
       path: "/products",
     },
     {
@@ -107,14 +106,14 @@ const Sidebar = ({ isOpen = true }) => {
       path: "/banners",
     },
     {
-      title: "Section",
-      icon: <FaStore />,
-      path: "/stores",
-    },
+      title: "Section",
+      icon: <FaStore />,
+      path: "/stores",
+    },
     {
-      title: "BBM Picks",
+      title: "Recommended Stores",
       icon: <FaList />,
-      path: "/bbmpicks",
+      path: "/recommended-stores",
     },
     {
       title: "Promotions",
@@ -128,13 +127,6 @@ const Sidebar = ({ isOpen = true }) => {
       path: "/storage/enhanced",
       description: "Manage storage usage and files",
     },
-    // {
-    //   title: "Orders",
-    //   icon: <FaList />,
-    //   path: "/orders",
-    //   badge: orderCount,
-    // },
-    // Users: Manage users, roles, add/delete/change role
     {
       title: "Users",
       icon: <FaUsers />,

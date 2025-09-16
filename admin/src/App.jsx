@@ -8,8 +8,7 @@ import '@mantine/spotlight/styles.css';
 import { Notifications } from '@mantine/notifications';
 import { ModalsProvider } from '@mantine/modals';
 import { Spotlight, spotlight } from '@mantine/spotlight';
-import { FaSearch, FaHome, FaUsers, FaBoxOpen, FaQuestionCircle } from 'react-icons/fa';  
-
+import { FaSearch, FaHome, FaUsers, FaBoxOpen, FaQuestionCircle } from 'react-icons/fa'; 
 
 // Components
 import Sidebar from "./Components/Sidebar";
@@ -23,7 +22,7 @@ import AddProduct from "./Pages/Products/AddProduct";
 import CategoriesPage from "./Pages/Categories";
 import AddCategory from "./Pages/Categories/AddCategory";
 import BannersPage from "./Pages/Banners";
-import AdsBannersPage from "./Pages/AdsBanners"; // Import AdsBannersPage
+import AdsBannersPage from "./Pages/AdsBanners";
 import UsersPage from "./Pages/Users";
 import EnquiryPage from "./Pages/Enquiry";
 import PrintRequestsPage from "./Pages/PrintRequests";
@@ -35,15 +34,14 @@ import StorageDetailsPage from "./Pages/Storage";
 import BusinessUsersList from "./Pages/BusinessWork/BusinessData.jsx";
 import EnhancedStoragePage from "./Pages/Storage/enhanced";
 import WarehouseList from "./Pages/WarehousePages/WarehouseList.jsx";
-import WarehouseProducts from './Pages/WarehousePages/WarehouseProducts.jsx'
+import WarehouseProducts from './Pages/WarehousePages/WarehouseProducts.jsx';
 import VideoBannerManagement from "./Pages/VideoBanners/VideoBannerManagement.jsx";
 import AdminOrders from "./Pages/Orders/index.jsx";
 import ShippingBanner from "./Pages/ShippingBanner/ShippingBanner.jsx";
 import Notification from "./Pages/Notifications/Notification.jsx";
 import StoreAdmin from "./Pages/Store/Store.jsx";
-import BbmPicks from "./Pages/BbmPicks/BbmPicks.jsx";
-import BbmPicksProduct from "./Pages/BbmPicks/BbmPicksProducts.jsx";
-
+import RecommendedStore from "./Pages/RecommendedStore/RecommendedStore.jsx";
+import RecommendedStoreProducts from "./Pages/RecommendedStore/RecommendedStoreProducts.jsx";
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -108,8 +106,6 @@ const spotlightActions = [
 ];
 
 function App() {
-  // Auth state will be managed by the AdminAuthContext
-
   const router = createBrowserRouter([
     {
       path: "/login",
@@ -213,14 +209,14 @@ function App() {
         {
           path: "/stores",
           element: <StoreAdmin />,
-        },{
-          path: "/bbmpicks", 
-          element: <BbmPicks />,
-        },
-        {
-          path: "/bbmpicksproducts/:id", 
-          element: <BbmPicksProduct />,
-        },
+        }, {
+          path: "/recommended-stores",
+          element: <RecommendedStore />,
+        },
+        {
+          path: "/recommendedstoreproducts/:id",
+          element: <RecommendedStoreProducts />,
+        },
       ],
     },
   ]);
@@ -237,7 +233,6 @@ function App() {
               leftSection: <FaSearch size={18} />,
             }}
             shortcut="mod + k"
-            
           />
           <RouterProvider router={router} />
         </ModalsProvider>
@@ -246,10 +241,9 @@ function App() {
   );
 }
 
-// Protected route component using the AdminAuthContext
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAdminAuth();
-  
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen mantine-bg">
@@ -257,7 +251,7 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-  
+
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 

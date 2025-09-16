@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const BbmPicks = () => {
+const RecommendedStore = () => {
   const navigate = useNavigate();
-  const [editingBbmPick, setEditingBbmPick] = useState(null);
+  const [editingRecommendedStore, setEditingRecommendedStore] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -12,35 +12,35 @@ const BbmPicks = () => {
   });
   const [preview, setPreview] = useState(null); // For image preview
   const [submitting, setSubmitting] = useState(false);
-  const [bbmPicks, setBbmPicks] = useState([]);
+  const [recommendedStores, setRecommendedStores] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchBbmPicks = async () => {
+  const fetchRecommendedStores = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/bbmpicks/list"
+        "http://localhost:8000/api/recommended-stores/list"
       );
-      setBbmPicks(res.data.bbmPicks);
+      setRecommendedStores(res.data.recommendedStores);
     } catch (err) {
-      console.error("Failed to fetch BBM Picks:", err);
+      console.error("Failed to fetch Recommended Stores:", err);
     } finally {
       setLoading(false);
     }
   };
 
-  const deleteBbmPick = async (id) => {
+  const deleteRecommendedStore = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this BBM Pick?"
+      "Are you sure you want to delete this Recommended Store?"
     );
     if (!confirmDelete) return;
 
     try {
       await axios.delete(
-        `http://localhost:8000/api/bbmpicks/delete/${id}`
+        `http://localhost:8000/api/recommended-stores/delete/${id}`
       );
-      await fetchBbmPicks();
+      await fetchRecommendedStores();
     } catch (err) {
-      alert("Failed to delete BBM Pick");
+      alert("Failed to delete Recommended Store");
       console.error(err);
     }
   };
@@ -53,28 +53,28 @@ const BbmPicks = () => {
     const formData = new FormData();
     formData.append("name", form.name);
     if (form.imageFile) {
-        formData.append("image_url", form.imageFile); // Use "image" to match your backend's Multer middleware
+        formData.append("image_url", form.imageFile); // Use "image_url" to match your backend's Multer middleware
     }
 
     try {
-      if (editingBbmPick) {
+      if (editingRecommendedStore) {
         await axios.put(
-          `http://localhost:8000/api/bbmpicks/update/${editingBbmPick.id}`,
+          `http://localhost:8000/api/recommended-stores/update/${editingRecommendedStore.id}`,
           formData
         );
       } else {
         await axios.post(
-          "http://localhost:8000/api/bbmpicks/add",
+          "http://localhost:8000/api/recommended-stores/add",
           formData
         );
       }
-      await fetchBbmPicks();
+      await fetchRecommendedStores();
       setShowForm(false);
       setForm({ name: "", imageFile: null });
       setPreview(null);
-      setEditingBbmPick(null);
+      setEditingRecommendedStore(null);
     } catch (err) {
-      alert("Failed to save BBM Pick");
+      alert("Failed to save Recommended Store");
       console.error(err);
     } finally {
       setSubmitting(false);
@@ -82,7 +82,7 @@ const BbmPicks = () => {
   };
   
   const handleEdit = (pick) => {
-    setEditingBbmPick(pick);
+    setEditingRecommendedStore(pick);
     setForm({
       name: pick.name,
       imageFile: null, // Reset imageFile, user can upload a new one
@@ -92,34 +92,34 @@ const BbmPicks = () => {
   };
 
   useEffect(() => {
-    fetchBbmPicks();
+    fetchRecommendedStores();
   }, []);
 
   return (
     <div className="p-4 sm:p-6 max-w-screen-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">BBM Picks</h1>
+      <h1 className="text-2xl font-bold mb-6">Recommended Stores</h1>
       
       {/* Form for Add/Edit */}
       <div className="mb-6">
         <button
           onClick={() => {
             setShowForm(!showForm);
-            setEditingBbmPick(null);
+            setEditingRecommendedStore(null);
             setForm({ name: "", imageFile: null });
             setPreview(null);
           }}
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
-          {showForm ? "Cancel" : "➕ Add BBM Pick"}
+          {showForm ? "Cancel" : "➕ Add Recommended Store"}
         </button>
 
         {showForm && (
           <form onSubmit={handleSubmit} className="mt-4 p-4 bg-gray-100 rounded shadow">
-            <h2 className="text-lg font-bold mb-4">{editingBbmPick ? "Edit BBM Pick" : "Add BBM Pick"}</h2>
+            <h2 className="text-lg font-bold mb-4">{editingRecommendedStore ? "Edit Recommended Store" : "Add Recommended Store"}</h2>
             <div className="space-y-4">
               <input
                 type="text"
-                placeholder="BBM Pick Name"
+                placeholder="Recommended Store Name"
                 className="w-full border px-3 py-2 rounded text-sm"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -145,7 +145,7 @@ const BbmPicks = () => {
                 disabled={submitting}
                 className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
               >
-                {submitting ? "Saving..." : editingBbmPick ? "Save Changes" : "Add"}
+                {submitting ? "Saving..." : editingRecommendedStore ? "Save Changes" : "Add"}
               </button>
             </div>
           </form>
@@ -153,9 +153,9 @@ const BbmPicks = () => {
       </div>
 
       {loading ? (
-        <p className="text-gray-500">Loading BBM Picks...</p>
-      ) : bbmPicks && bbmPicks.length === 0 ? (
-        <p className="text-gray-500">No BBM Picks found.</p>
+        <p className="text-gray-500">Loading Recommended Stores...</p>
+      ) : recommendedStores && recommendedStores.length === 0 ? (
+        <p className="text-gray-500">No Recommended Stores found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white rounded shadow text-sm md:text-base">
@@ -168,7 +168,7 @@ const BbmPicks = () => {
               </tr>
             </thead>
             <tbody>
-              {bbmPicks.map((pick) => (
+              {recommendedStores.map((pick) => (
                 <tr key={pick.id} className="border-t">
                   <td className="py-2 px-4">{pick.id}</td>
                   <td className="py-2 px-4">{pick.name}</td>
@@ -182,19 +182,19 @@ const BbmPicks = () => {
                   <td className="py-2 px-4 space-x-2">
                     <button
                       className="bg-yellow-500 text-white px-3 py-1 rounded"
-                      onClick={() => handleEdit(pick)} // Use the new handleEdit function
+                      onClick={() => handleEdit(pick)}
                     >
                       ✏️
                     </button>
                     <button
                       className="bg-red-600 text-white px-3 py-1 rounded"
-                      onClick={() => deleteBbmPick(pick.id)}
+                      onClick={() => deleteRecommendedStore(pick.id)}
                     >
                       🗑️
                     </button>
                     <button
                       className="bg-green-600 text-white px-3 py-1 rounded"
-                      onClick={() => navigate(`/bbmpicksproducts/${pick.id}`)}
+                      onClick={() => navigate(`/recommendedstoreproducts/${pick.id}`)}
                     >
                       📦 Products
                     </button>
@@ -209,4 +209,4 @@ const BbmPicks = () => {
   );
 };
 
-export default BbmPicks;
+export default RecommendedStore;
