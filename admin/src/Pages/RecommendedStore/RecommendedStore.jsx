@@ -18,7 +18,7 @@ const RecommendedStore = () => {
   const fetchRecommendedStores = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/recommended-stores/list"
+        "https://ecommerceclone1.onrender.com/api/bbmpicks/list"
       );
       setRecommendedStores(res.data.recommendedStores);
     } catch (err) {
@@ -36,7 +36,7 @@ const RecommendedStore = () => {
 
     try {
       await axios.delete(
-        `http://localhost:8000/api/recommended-stores/delete/${id}`
+        `https://ecommerceclone1.onrender.com/api/bbmpicks/delete/${id}`
       );
       await fetchRecommendedStores();
     } catch (err) {
@@ -59,12 +59,12 @@ const RecommendedStore = () => {
     try {
       if (editingRecommendedStore) {
         await axios.put(
-          `http://localhost:8000/api/recommended-stores/update/${editingRecommendedStore.id}`,
+          `https://ecommerceclone1.onrender.com/api/bbmpicks/update/${editingBbmPick.id}`,
           formData
         );
       } else {
         await axios.post(
-          "http://localhost:8000/api/recommended-stores/add",
+          "https://ecommerceclone1.onrender.com/api/bbmpicks/add",
           formData
         );
       }

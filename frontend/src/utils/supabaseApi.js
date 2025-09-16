@@ -1937,5 +1937,83 @@ export async function migrateUserAddresses(userId) {
   }
 }
 
+const API_BASE = "https://ecommerceclone1.onrender.com/api"; 
+
+export async function fetchStores() {
+  const res = await fetch(`${API_BASE}/stores`);
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return data.stores;
+}
+
+export async function addStore(formData) {
+  const res = await fetch(`${API_BASE}/stores`, {
+    method: "POST",
+    body: formData,
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return data.store;
+}
+
+export async function updateStore(id, formData) {
+  const res = await fetch(`${API_BASE}/stores/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return data.store;
+}
+
+export async function deleteStore(id) {
+  const res = await fetch(`${API_BASE}/stores/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return true;
+}
+
+
+const API_URL = "https://ecommerceclone1.onrender.com/api/bbmpicks"; // replace with your backend base URL
+
+// Fetch all picks
+export async function fetchBbmPicks() {
+  const res = await fetch(`${API_URL}/list`);
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return data.bbmPicks;
+}
+
+// Add new pick
+export async function addBbmPick(formData) {
+  const res = await fetch(`${API_URL}/add`, {
+    method: "POST",
+    body: formData, // must be FormData for file upload
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return data.bbmPick;
+}
+
+// Edit pick
+export async function editBbmPick(id, formData) {
+  const res = await fetch(`${API_URL}/update/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return data.bbmPick;
+}
+
+// Delete pick
+export async function deleteBbmPick(id) {
+  const res = await fetch(`${API_URL}/delete/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error);
+  return true;
+}
+
+
 
 /* this is a testing commit */

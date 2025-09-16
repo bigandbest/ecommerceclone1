@@ -15,8 +15,10 @@ const RecommendedStoreProducts = () => {
   // Fetch Recommended Store info
   const fetchRecommendedStore = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/recommended-stores/${id}`);
-      setRecommendedStore(res.data.recommendedStore);
+      // CORRECT: Use the route you defined in bbmPicksRoute.js
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/bbmpicks/${id}`);
+      // CORRECT: Access the 'bbmPick' property from the response data
+      setBbmPick(res.data.bbmPick);
     } catch (err) {
       console.error("Failed to fetch Recommended Store details:", err);
     }
@@ -25,7 +27,7 @@ const RecommendedStoreProducts = () => {
   // Fetch products mapped to this Recommended Store
   const fetchRecommendedStoreProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/product-recommended-stores/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/productbbmpicks/${id}`);
       const mapped = res.data.map((item) => item.products);
       setProductsInStore(mapped);
     } catch (err) {
@@ -36,7 +38,7 @@ const RecommendedStoreProducts = () => {
   // Fetch all available products
   const fetchAllProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/productsroute/allproducts`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/productsroute/allproducts`);
       setAllProducts(res.data);
     } catch (err) {
       console.error("Failed to fetch all products:", err);
@@ -47,7 +49,7 @@ const RecommendedStoreProducts = () => {
     if (!selectedProductId) return;
 
     try {
-      await axios.post("http://localhost:8000/api/product-recommended-stores/map", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/productbbmpicks/map", {
         product_id: selectedProductId,
         recommended_store_id: id,
       });
@@ -61,7 +63,7 @@ const RecommendedStoreProducts = () => {
 
   const handleRemoveProduct = async (product_id) => {
     try {
-      await axios.post("http://8000/api/product-recommended-stores/remove", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/productbbmpicks/remove", {
         product_id,
         recommended_store_id: id,
       });
