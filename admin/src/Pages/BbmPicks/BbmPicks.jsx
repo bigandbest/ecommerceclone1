@@ -18,7 +18,7 @@ const BbmPicks = () => {
   const fetchBbmPicks = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/bbmpicks/list"
+        "https://ecommerceclone1.onrender.com/api/bbmpicks/list"
       );
       setBbmPicks(res.data.bbmPicks);
     } catch (err) {
@@ -36,7 +36,7 @@ const BbmPicks = () => {
 
     try {
       await axios.delete(
-        `http://localhost:8000/api/bbmpicks/delete/${id}`
+        `https://ecommerceclone1.onrender.com/api/bbmpicks/delete/${id}`
       );
       await fetchBbmPicks();
     } catch (err) {
@@ -59,12 +59,12 @@ const BbmPicks = () => {
     try {
       if (editingBbmPick) {
         await axios.put(
-          `http://localhost:8000/api/bbmpicks/update/${editingBbmPick.id}`,
+          `https://ecommerceclone1.onrender.com/api/bbmpicks/update/${editingBbmPick.id}`,
           formData
         );
       } else {
         await axios.post(
-          "http://localhost:8000/api/bbmpicks/add",
+          "https://ecommerceclone1.onrender.com/api/bbmpicks/add",
           formData
         );
       }

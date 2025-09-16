@@ -16,7 +16,7 @@ const BbmPicksProduct = () => {
   const fetchBbmPick = async () => {
     try {
       // CORRECT: Use the route you defined in bbmPicksRoute.js
-      const res = await axios.get(`http://localhost:8000/api/bbmpicks/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/bbmpicks/${id}`);
       // CORRECT: Access the 'bbmPick' property from the response data
       setBbmPick(res.data.bbmPick);
     } catch (err) {
@@ -27,7 +27,7 @@ const BbmPicksProduct = () => {
   // Fetch products mapped to this BBM Pick
   const fetchBbmPickProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/productbbmpicks/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/productbbmpicks/${id}`);
       const mapped = res.data.map((item) => item.products);
       setProductsInPick(mapped);
     } catch (err) {
@@ -38,7 +38,7 @@ const BbmPicksProduct = () => {
   // Fetch all available products
   const fetchAllProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/productsroute/allproducts`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/productsroute/allproducts`);
       setAllProducts(res.data);
     } catch (err) {
       console.error("Failed to fetch all products:", err);
@@ -49,7 +49,7 @@ const BbmPicksProduct = () => {
     if (!selectedProductId) return;
 
     try {
-      await axios.post("http://localhost:8000/api/productbbmpicks/map", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/productbbmpicks/map", {
         product_id: selectedProductId,
         bbmpicks_id: id,
       });
@@ -63,7 +63,7 @@ const BbmPicksProduct = () => {
 
   const handleRemoveProduct = async (product_id) => {
     try {
-      await axios.post("http://localhost:8000/api/productbbmpicks/remove", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/productbbmpicks/remove", {
         product_id,
         bbmpicks_id: id,
       });
