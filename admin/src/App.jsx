@@ -41,6 +41,9 @@ import AdminOrders from "./Pages/Orders/index.jsx";
 import ShippingBanner from "./Pages/ShippingBanner/ShippingBanner.jsx";
 import Notification from "./Pages/Notifications/Notification.jsx";
 import StoreAdmin from "./Pages/Store/Store.jsx";
+import BbmPicks from "./Pages/BbmPicks/BbmPicks.jsx";
+import BbmPicksProduct from "./Pages/BbmPicks/BbmPicksProducts.jsx";
+
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -210,7 +213,14 @@ function App() {
         {
           path: "/stores",
           element: <StoreAdmin />,
-        },
+        },{
+          path: "/bbmpicks", 
+          element: <BbmPicks />,
+        },
+        {
+          path: "/bbmpicksproducts/:id", 
+          element: <BbmPicksProduct />,
+        },
       ],
     },
   ]);

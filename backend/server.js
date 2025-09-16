@@ -20,6 +20,8 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js"
 import locationRoutes from './routes/locationRoute.js'
 import storeRoutes from './routes/storeRoute.js'
+import bbmPicksRoute from './routes/bbmPicksRoute.js';
+import productBbmPicksRoute from './routes/productBbmPicksRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -78,5 +80,7 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use('/api/location', locationRoutes)
 app.use("/api/stores", storeRoutes);
+app.use("/api/bbmpicks", bbmPicksRoute);
+app.use("/api/productbbmpicks", productBbmPicksRoute);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
