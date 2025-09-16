@@ -16,7 +16,7 @@ const RecommendedStoreProducts = () => {
   const fetchRecommendedStore = async () => {
     try {
       // CORRECT: Use the route you defined in bbmPicksRoute.js
-      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/bbmpicks/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/recommended-stores/${id}`);
       // CORRECT: Access the 'bbmPick' property from the response data
       setBbmPick(res.data.bbmPick);
     } catch (err) {
@@ -27,7 +27,7 @@ const RecommendedStoreProducts = () => {
   // Fetch products mapped to this Recommended Store
   const fetchRecommendedStoreProducts = async () => {
     try {
-      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/productbbmpicks/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/product-recommended-stores/${id}`);
       const mapped = res.data.map((item) => item.products);
       setProductsInStore(mapped);
     } catch (err) {
@@ -49,7 +49,7 @@ const RecommendedStoreProducts = () => {
     if (!selectedProductId) return;
 
     try {
-      await axios.post("https://ecommerceclone1.onrender.com/api/productbbmpicks/map", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/product-recommended-stores/map", {
         product_id: selectedProductId,
         recommended_store_id: id,
       });
@@ -63,7 +63,7 @@ const RecommendedStoreProducts = () => {
 
   const handleRemoveProduct = async (product_id) => {
     try {
-      await axios.post("https://ecommerceclone1.onrender.com/api/productbbmpicks/remove", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/product-recommended-stores/remove", {
         product_id,
         recommended_store_id: id,
       });
