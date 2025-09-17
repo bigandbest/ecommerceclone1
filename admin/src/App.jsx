@@ -42,6 +42,9 @@ import Notification from "./Pages/Notifications/Notification.jsx";
 import StoreAdmin from "./Pages/Store/Store.jsx";
 import RecommendedStore from "./Pages/RecommendedStore/RecommendedStore.jsx";
 import RecommendedStoreProducts from "./Pages/RecommendedStore/RecommendedStoreProducts.jsx";
+import QuickPicksPage from "./Pages/QuickPicks/QuickPicks.jsx";
+import QuickPickGroupPage from "./Pages/QuickPicks/QuickPickGroup.jsx";
+import QuickPickGroupProducts from "./Pages/QuickPicks/QuickPickGroupProducts.jsx";
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -216,6 +219,17 @@ function App() {
         {
           path: "/recommendedstoreproducts/:id",
           element: <RecommendedStoreProducts />,
+        },
+        {
+          path: "/quick-picks",
+          element: <QuickPicksPage />,
+        },{
+          path: "/quick-pick-groups",
+          element: <QuickPickGroupPage />,
+        },
+        {
+          path: "/quick-pick-group/products/:id",
+          element: <QuickPickGroupProducts />,
         },
       ],
     },

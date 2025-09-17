@@ -111,7 +111,12 @@ const Sidebar = ({ isOpen = true }) => {
       path: "/stores",
     },
     {
-      title: "Shop By Store",
+      title: "Quick Picks",
+      icon: <FaList />, 
+      path: "/quick-picks",
+    },
+    {
+      title: "Recommended Stores",
       icon: <FaList />,
       path: "/recommended-stores",
     },

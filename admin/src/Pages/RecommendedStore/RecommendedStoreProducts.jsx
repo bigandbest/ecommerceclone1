@@ -18,7 +18,7 @@ const RecommendedStoreProducts = () => {
       // CORRECT: Use the route you defined in bbmPicksRoute.js
       const res = await axios.get(`https://ecommerceclone1.onrender.com/api/recommended-stores/${id}`);
       // CORRECT: Access the 'bbmPick' property from the response data
-      setRecommendedStore(res.data.bbmPick);
+      setRecommendedStore(res.data.recommendedStore);
     } catch (err) {
       console.error("Failed to fetch Recommended Store details:", err);
     }
