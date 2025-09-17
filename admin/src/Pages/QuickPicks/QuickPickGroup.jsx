@@ -5,8 +5,8 @@ import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import { notifications } from '@mantine/notifications';
 import { supabaseAdmin } from '../../utils/supabase.js';
 
-const API_URL = "http://localhost:8000/api/quick-pick-group";
-const QUICK_PICK_API_URL = "http://localhost:8000/api/quick-pick";
+const API_URL = "https://ecommerceclone1.onrender.com/api/quick-pick-group";
+const QUICK_PICK_API_URL = "https://ecommerceclone1.onrender.com/api/quick-pick";
 
 // Component to handle adding/editing a Quick Pick Group
 const QuickPickGroupForm = ({ initialData, onSave, onCancel, quickPickId }) => {

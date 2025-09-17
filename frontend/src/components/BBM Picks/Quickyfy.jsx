@@ -30,7 +30,7 @@ function Quickyfy({
     <div className="w-full gap-4 p-3 md:hidden">
       {/* Section Title */}
       <h2 className="flex text-sm font-semibold text-gray-900 mb-3">
-        {title} <ChevronRight />
+         B&B Expertise <ChevronRight />
       </h2>
 
       {/* Items */}

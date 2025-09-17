@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 
 // Base URL for your quick pick backend APIs
-const API_URL = 'http://localhost:8000/api/quick-pick';
+const API_URL = 'https://ecommerceclone1.onrender.com/api/quick-pick';
 
 // Component to handle adding/editing a Quick Pick
 const QuickPickForm = ({ initialData, onSave, onCancel }) => {

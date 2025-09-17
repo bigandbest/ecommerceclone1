@@ -1974,46 +1974,102 @@ export async function deleteStore(id) {
 }
 
 
-const API_URL = "https://ecommerceclone1.onrender.com/api/recommended-stores"; // replace with your backend base URL
 
-// Fetch all picks
-export async function fetchBbmPicks() {
-  const res = await fetch(`${API_URL}/list`);
-  const data = await res.json();
-  if (!data.success) throw new Error(data.error);
-  return data.bbmPicks;
+// The API endpoint is set to your quick-pick service
+const API_URL = "https://ecommerceclone1.onrender.com/api/quick-pick";
+
+// Fetch all quick picks
+export async function fetchQuickPicks() {
+  // axios automatically throws an error for non-2xx responses
+  const response = await axios.get(`${API_URL}/list`);
+  // aaxios wraps the JSON response in a 'data' property
+  return response.data.quickPicks;
 }
 
-// Add new pick
-export async function addBbmPick(formData) {
-  const res = await fetch(`${API_URL}/add`, {
-    method: "POST",
-    body: formData, // must be FormData for file upload
+// Add new quick pick
+export async function addQuickPick(formData) {
+  const response = await axios.post(`${API_URL}/add`, formData, {
+    // This header is important for file uploads
+    headers: { 'Content-Type': 'multipart/form-data' },
   });
-  const data = await res.json();
-  if (!data.success) throw new Error(data.error);
-  return data.bbmPick;
+  return response.data.quickPick;
 }
 
-// Edit pick
-export async function editBbmPick(id, formData) {
-  const res = await fetch(`${API_URL}/update/${id}`, {
-    method: "PUT",
-    body: formData,
+// Edit an existing quick pick
+export async function editQuickPick(id, formData) {
+  const response = await axios.put(`${API_URL}/update/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
   });
-  const data = await res.json();
-  if (!data.success) throw new Error(data.error);
-  return data.bbmPick;
+  return response.data.quickPick;
 }
 
-// Delete pick
-export async function deleteBbmPick(id) {
-  const res = await fetch(`${API_URL}/delete/${id}`, { method: "DELETE" });
-  const data = await res.json();
-  if (!data.success) throw new Error(data.error);
+// Delete a quick pick
+export async function deleteQuickPick(id) {
+  await axios.delete(`${API_URL}/delete/${id}`);
+  // Return true to indicate success, matching the previous function's behavior
   return true;
 }
 
 
+// The base URL for your recommended stores API
+const API_URL_New = "https://ecommerceclone1.onrender.com/api/recommended-stores";
+
+/**
+ * Fetches all recommended stores.
+ * @returns {Promise<Array>} A promise that resolves to an array of store objects.
+ */
+export async function fetchRecommendedStores() {
+  const response = await axios.get(`${API_URL_New}/list`);
+  return response.data.recommendedStores;
+}
+
+/**
+ * Fetches a single recommended store by its ID.
+ * @param {string|number} id - The ID of the store to fetch.
+ * @returns {Promise<Object>} A promise that resolves to a single store object.
+ */
+export async function fetchSingleRecommendedStore(id) {
+  const response = await axios.get(`${API_URL_New}/${id}`);
+  return response.data.recommendedStore;
+}
+
+/**
+ * Adds a new recommended store.
+ * @param {FormData} formData - The form data containing the store's name and image file.
+ * The image file must be appended with the key 'image_url'.
+ * e.g., formData.append('image_url', file);
+ * @returns {Promise<Object>} A promise that resolves to the newly created store object.
+ */
+export async function addRecommendedStore(formData) {
+  const response = await axios.post(`${API_URL_New}/add`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data.recommendedStore;
+}
+
+/**
+ * Edits an existing recommended store.
+ * @param {string|number} id - The ID of the store to update.
+ * @param {FormData} formData - The form data containing the updated name and/or image file.
+ * NOTE: Your backend route expects the image file with the key 'image'.
+ * e.g., formData.append('image', file);
+ * @returns {Promise<Object>} A promise that resolves to the updated store object.
+ */
+export async function editRecommendedStore(id, formData) {
+  const response = await axios.put(`${API_URL_New}/update/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data.recommendedStore;
+}
+
+/**
+ * Deletes a recommended store by its ID.
+ * @param {string|number} id - The ID of the store to delete.
+ * @returns {Promise<boolean>} A promise that resolves to true if deletion is successful.
+ */
+export async function deleteRecommendedStore(id) {
+  await axios.delete(`${API_URL_New}/delete/${id}`);
+  return true;
+}
 
 /* this is a testing commit */
