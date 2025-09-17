@@ -21,6 +21,9 @@ import locationRoutes from './routes/locationRoute.js';
 import storeRoutes from './routes/storeRoute.js';
 import recommendedStoreRoutes from './routes/recommendedStoreRoutes.js';
 import productRecommendedStoreRoutes from './routes/productRecommendedStoreRoutes.js';
+import quickPickRoutes from './routes/quickPickRoutes.js'
+import quickPickGroupRoutes from './routes/quickPickGroupRoutes.js'
+import quickPickGroupProductRoutes from './routes/quickPickGroupProductRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -67,5 +70,9 @@ app.use('/api/location', locationRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/recommended-stores", recommendedStoreRoutes);
 app.use("/api/product-recommended-stores", productRecommendedStoreRoutes);
+app.use("/api/quick-pick", quickPickRoutes);
+app.use("/api/quick-pick-group", quickPickGroupRoutes);
+app.use("/api/quick-pick-group-product", quickPickGroupProductRoutes);
+
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
