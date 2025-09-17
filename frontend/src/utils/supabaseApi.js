@@ -1974,7 +1974,7 @@ export async function deleteStore(id) {
 }
 
 
-const API_URL = "https://ecommerceclone1.onrender.com/api/bbmpicks"; // replace with your backend base URL
+const API_URL = "https://ecommerceclone1.onrender.com/api/recommended-stores"; // replace with your backend base URL
 
 // Fetch all picks
 export async function fetchBbmPicks() {
