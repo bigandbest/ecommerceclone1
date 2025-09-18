@@ -15,7 +15,7 @@ const BrandProducts = () => {
   // Fetch Brand info
   const fetchBrand = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/brand/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/brand/${id}`);
       setBrand(res.data.brand);
     } catch (err) {
       console.error("Failed to fetch Brand details:", err);
@@ -25,7 +25,7 @@ const BrandProducts = () => {
   // Fetch products mapped to this Brand
   const fetchBrandProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/product-brand/${id}`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/product-brand/${id}`);
       const mapped = res.data.map((item) => item.products);
       setProductsInBrand(mapped);
     } catch (err) {
@@ -36,7 +36,7 @@ const BrandProducts = () => {
   // Fetch all available products
   const fetchAllProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/productsroute/allproducts`);
+      const res = await axios.get(`https://ecommerceclone1.onrender.com/api/productsroute/allproducts`);
       setAllProducts(res.data);
     } catch (err) {
       console.error("Failed to fetch all products:", err);
@@ -47,7 +47,7 @@ const BrandProducts = () => {
     if (!selectedProductId) return;
 
     try {
-      await axios.post("http://localhost:8000/api/product-brand/map", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/product-brand/map", {
         product_id: selectedProductId,
         brand_id: id,
       });
@@ -61,7 +61,7 @@ const BrandProducts = () => {
 
   const handleRemoveProduct = async (product_id) => {
     try {
-      await axios.post("http://localhost:8000/api/product-brand/remove", {
+      await axios.post("https://ecommerceclone1.onrender.com/api/product-brand/remove", {
         product_id,
         brand_id: id,
       });

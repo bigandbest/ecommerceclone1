@@ -1,14 +1,14 @@
 import { supabase } from "../config/supabaseClient.js";
 
 // Helper function to upload an image to Supabase Storage
-async function uploadImage(file, bucketName) {
+async function uploadImage(file, bnbGroup) {
   const fileExt = file.originalname.split(".").pop();
   const fileName = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
   
-  const { error: uploadError } = await supabase.storage.from(bucketName).upload(fileName, file.buffer, { contentType: file.mimetype, upsert: true });
+  const { error: uploadError } = await supabase.storage.from(bnbGroup).upload(fileName, file.buffer, { contentType: file.mimetype, upsert: true });
   if (uploadError) throw new Error(uploadError.message);
 
-  const { data: urlData } = supabase.storage.from(bucketName).getPublicUrl(fileName);
+  const { data: urlData } = supabase.storage.from(bnbGroup).getPublicUrl(fileName);
   return urlData.publicUrl;
 }
 

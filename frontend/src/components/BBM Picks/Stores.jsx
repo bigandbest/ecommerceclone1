@@ -1,13 +1,18 @@
-// src/components/QuickPicks.jsx (formerly BBMPicks in Stores.jsx)
-
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-// 1. Import the new axios-based function
 import { fetchQuickPicks } from "../../utils/supabaseApi.js";
 
-export default function QuickPicks() {
+function Stores({
+  title = "Recommended Store",
+  items = [],
+  mode = "scroll",
+  forceShow = false // 👈 NEW PROP
+}) {
   const [picks, setPicks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     async function load() {
@@ -26,23 +31,61 @@ export default function QuickPicks() {
     load();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+
+  // Only show on home route (keep your existing check if needed)
+  if (!forceShow && location.pathname !== "/") {
+    return null;
+  }
+
+  // Conditional classNames
+  const containerClass =
+    mode === "grid"
+      ? "grid grid-cols-3 gap-1" // 👈 3x3 grid
+      : "flex overflow-x-auto hide-scrollbar snap-x"; // 👈 scroll
+
+  const imageClass =
+    mode === "grid"
+      ? "grid grid-cols-3 gap-2" // 👈 3x3 grid
+      : "flex overflow-x-auto hide-scrollbar snap-x"; // 👈 scroll
+
+  const itemClass =
+    mode === "grid"
+      ? "flex flex-col items-center" // grid item
+      : "flex flex-col items-center flex-shrink-0 w-[55%] mr-1 snap-start"; // scroll item
 
   return (
-    <>
-    <h2 className="pl-3 pt-2 flex">Quick Picks <ChevronRight /></h2>
-    <div className="flex space-x-4 overflow-x-auto p-3 hide-scrollbar h-30">
-      {picks.map((pick) => (
-        <div key={pick.id} className="flex flex-col items-center flex-shrink-0">
-          <img
-            src={pick.image_url}
-            alt={pick.name}
-            className="w-20 h-20 rounded-md object-contain mb-1"
-          />
-          <p className="text-sm font-medium text-center w-20">{pick.name}</p>
-        </div>
-      ))}
+    <div className="w-full gap-4 md:hidden p-3">
+      {/* Section Title */}
+      <h2 className="flex text-sm font-semibold text-gray-900 mb-3">
+        Quick Picks <ChevronRight />
+      </h2>
+
+      {/* Items */}
+      <div className={containerClass}>
+        {picks.map((pick) => (
+          <div key={pick.id} className={itemClass}>
+            {/* Card Style Image */}
+              <div className="w-full rounded-md overflow-hidden">
+                <img
+                  src={pick.image_url}
+                  alt={pick.name}
+                  className="w-full h-full rounded-md object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://placehold.co/100x100?text=Image";
+                  }}
+                />
+              </div>
+          
+            {/* Label */}
+            <p className="mt-1 text-md font-semibold text-gray-700 text-center truncate w-full">
+              {pick.name}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
-    </>
   );
 }
+
+export default Stores;

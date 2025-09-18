@@ -19,7 +19,7 @@ router.delete("/remove", removeProductFromBandBGroup);
 router.get("/getGroupsByProduct/:product_id", getBandBGroupsForProduct);
 
 // Route to get all products within a specific b&b group
-router.get("/getProductsByGroup/:bandb_group_id", getProductsForBandBGroup);
+router.get("/getProductsByGroup/:bnb_group_id", getProductsForBandBGroup);
 
 // Route to bulk map products to a b&b group by names
 router.post("/bulk-map", bulkMapByNames);

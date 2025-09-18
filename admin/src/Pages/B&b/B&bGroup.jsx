@@ -5,8 +5,8 @@ import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import { notifications } from '@mantine/notifications';
 import { supabaseAdmin } from '../../utils/supabase.js';
 
-const API_URL = "http://localhost:8000/api/b&b-group";
-const BANDB_API_URL = "http://localhost:8000/api/b&b";
+const API_URL = "https://ecommerceclone1.onrender.com/api/b&b-group";
+const BANDB_API_URL = "https://ecommerceclone1.onrender.com/api/bnb";
 
 // Component to handle adding/editing a B&B Group
 const BandBGroupForm = ({ initialData, onSave, onCancel, bandbId }) => {
@@ -116,7 +116,7 @@ const BandBGroupPage = () => {
         return;
       }
       const { data, error } = await supabaseAdmin
-        .from("b&b_group")
+        .from("bnb_group")
         .select("*")
         .eq("bnb_id", bandbId);
       

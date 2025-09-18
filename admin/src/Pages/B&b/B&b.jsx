@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 
 // Base URL for your B&B backend APIs
-const API_URL = 'http://localhost:8000/api/bnb';
+const API_URL = 'https://ecommerceclone1.onrender.com/api/bnb';
 
 // Component to handle adding/editing a B&B
 const BandBForm = ({ initialData, onSave, onCancel }) => {

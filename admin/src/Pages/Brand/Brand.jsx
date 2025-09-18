@@ -18,7 +18,7 @@ const Brand = () => {
   const fetchBrands = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/brand/list"
+        "https://ecommerceclone1.onrender.com/api/brand/list"
       );
       setBrands(res.data.brands);
     } catch (err) {
@@ -36,7 +36,7 @@ const Brand = () => {
 
     try {
       await axios.delete(
-        `http://localhost:8000/api/brand/delete/${id}`
+        `https://ecommerceclone1.onrender.com/api/brand/delete/${id}`
       );
       await fetchBrands();
     } catch (err) {
@@ -58,12 +58,12 @@ const Brand = () => {
     try {
       if (editingBrand) {
         await axios.put(
-          `http://localhost:8000/api/brand/update/${editingBrand.id}`,
+          `https://ecommerceclone1.onrender.com/api/brand/update/${editingBrand.id}`,
           formData
         );
       } else {
         await axios.post(
-          "http://localhost:8000/api/brand/add",
+          "https://ecommerceclone1.onrender.com/api/brand/add",
           formData
         );
       }

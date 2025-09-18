@@ -238,7 +238,7 @@ function App() {
           element: <Bnb />,
         },
         {
-          path: "/b&b-groups",
+          path: "/bnb-groups",
           element: <BnbGroup />,
         },
         {
