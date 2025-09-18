@@ -21,9 +21,14 @@ import locationRoutes from './routes/locationRoute.js';
 import storeRoutes from './routes/storeRoute.js';
 import recommendedStoreRoutes from './routes/recommendedStoreRoutes.js';
 import productRecommendedStoreRoutes from './routes/productRecommendedStoreRoutes.js';
-import quickPickRoutes from './routes/quickPickRoutes.js'
-import quickPickGroupRoutes from './routes/quickPickGroupRoutes.js'
-import quickPickGroupProductRoutes from './routes/quickPickGroupProductRoutes.js'
+import quickPickRoutes from './routes/quickPickRoutes.js';
+import quickPickGroupRoutes from './routes/quickPickGroupRoutes.js';
+import quickPickGroupProductRoutes from './routes/quickPickGroupProductRoutes.js';
+import brandRoutes from './routes/brandRoutes.js';
+import productBrandRoutes from './routes/productBrandRoutes.js';
+import bnbRoutes from './routes/b&bRoutes.js';
+import bnbGroupRoutes from './routes/b&bGroupRoutes.js';
+import bnbGroupProductRoutes from './routes/b&bGroupProductRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -73,6 +78,11 @@ app.use("/api/product-recommended-stores", productRecommendedStoreRoutes);
 app.use("/api/quick-pick", quickPickRoutes);
 app.use("/api/quick-pick-group", quickPickGroupRoutes);
 app.use("/api/quick-pick-group-product", quickPickGroupProductRoutes);
+app.use("/api/brand", brandRoutes);
+app.use("/api/product-brand", productBrandRoutes);
+app.use("/api/bnb", bnbRoutes);
+app.use("/api/b&b-group", bnbGroupRoutes);
+app.use("/api/b&b-group-product", bnbGroupProductRoutes);
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

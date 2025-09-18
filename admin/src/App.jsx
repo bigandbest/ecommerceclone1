@@ -45,6 +45,11 @@ import RecommendedStoreProducts from "./Pages/RecommendedStore/RecommendedStoreP
 import QuickPicksPage from "./Pages/QuickPicks/QuickPicks.jsx";
 import QuickPickGroupPage from "./Pages/QuickPicks/QuickPickGroup.jsx";
 import QuickPickGroupProducts from "./Pages/QuickPicks/QuickPickGroupProducts.jsx";
+import Brand from './Pages/Brand/Brand.jsx'
+import BrandProducts from "./Pages/Brand/BrandProducts.jsx";
+import Bnb from "./Pages/B&b/B&b.jsx";
+import BnbGroup from "./Pages/B&b/B&bGroup.jsx";
+import BnbGroupProducts from "./Pages/B&b/B&bGroupProducts.jsx";
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -219,6 +224,26 @@ function App() {
         {
           path: "/recommendedstoreproducts/:id",
           element: <RecommendedStoreProducts />,
+        },
+        {
+          path: "/brands",
+          element: <Brand />,
+        },
+        {
+          path: "/brandproducts/:id",
+          element: <BrandProducts />,
+        },
+        {
+          path: "/b&b",
+          element: <Bnb />,
+        },
+        {
+          path: "/b&b-groups",
+          element: <BnbGroup />,
+        },
+        {
+          path: "/b&b-groups-products/:id",
+          element: <BnbGroupProducts />
         },
         {
           path: "/quick-picks",
