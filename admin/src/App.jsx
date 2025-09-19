@@ -50,6 +50,9 @@ import BrandProducts from "./Pages/Brand/BrandProducts.jsx";
 import Bnb from "./Pages/B&b/B&b.jsx";
 import BnbGroup from "./Pages/B&b/B&bGroup.jsx";
 import BnbGroupProducts from "./Pages/B&b/B&bGroupProducts.jsx";
+import SavingZone from "./Pages/SavingZone/SavingZone.jsx";
+import SavingZoneGroupPage from "./Pages/SavingZone/SavingZoneGroup.jsx";
+import SavingZoneGroupProducts from "./Pages/SavingZone/SavingZoneGroupProducts.jsx";
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -255,6 +258,18 @@ function App() {
         {
           path: "/quick-pick-group/products/:id",
           element: <QuickPickGroupProducts />,
+        },
+        {
+          path: "/saving-zone",
+          element: <SavingZone />,
+        },
+        {
+          path: "/saving-zone-groups",
+          element: <SavingZoneGroupPage />,
+        },
+        {
+          path: "/saving-zone-group/products/:id",
+          element: <SavingZoneGroupProducts />
         },
       ],
     },

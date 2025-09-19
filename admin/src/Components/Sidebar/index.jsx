@@ -121,6 +121,11 @@ const Sidebar = ({ isOpen = true }) => {
       path: "/quick-picks",
     },
     {
+      title: "Saving Zone",
+      icon: <FaList />,
+      path: "/saving-zone",
+    },
+    {
       title: "B&B",
       icon: <FaList />,
       path: "/b&b",

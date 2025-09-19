@@ -29,6 +29,9 @@ import productBrandRoutes from './routes/productBrandRoutes.js';
 import bnbRoutes from './routes/b&bRoutes.js';
 import bnbGroupRoutes from './routes/b&bGroupRoutes.js';
 import bnbGroupProductRoutes from './routes/b&bGroupProductRoutes.js'
+import savingZoneRoutes from './routes/savingZoneRoutes.js';
+import savingZoneGroupRoutes from './routes/savingZoneGroupRoutes.js';
+import savingZoneGroupProductRoutes from './routes/savingZoneGroupProductRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -83,6 +86,9 @@ app.use("/api/product-brand", productBrandRoutes);
 app.use("/api/bnb", bnbRoutes);
 app.use("/api/b&b-group", bnbGroupRoutes);
 app.use("/api/b&b-group-product", bnbGroupProductRoutes);
+app.use("/api/saving-zone", savingZoneRoutes);
+app.use("/api/saving-zone-group", savingZoneGroupRoutes);
+app.use("/api/saving-zone-group-product", savingZoneGroupProductRoutes);
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
