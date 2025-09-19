@@ -6,7 +6,8 @@ import {
     updateBandBGroup, 
     deleteBandBGroup, 
     getAllBandBGroups, 
-    getBandBGroupById 
+    getBandBGroupById,
+    getGroupsByBandBId 
 } from "../controller/b&bGroupController.js";
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.put("/update/:id", upload.any(), updateBandBGroup);
 router.delete("/delete/:id", deleteBandBGroup);
 router.get("/list", getAllBandBGroups);
 router.get("/:id", getBandBGroupById);
+router.get("/by-bnb/:bnbId", getGroupsByBandBId);
 
 export default router;

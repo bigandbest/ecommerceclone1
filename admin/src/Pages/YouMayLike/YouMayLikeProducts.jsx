@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/you-may-like-products";
-const API_URL_ALL_PRODUCTS = "http://localhost:8000/api/productsroute";
+const API_URL = "https://ecommerceclone1.onrender.com/api/you-may-like-products";
+const API_URL_ALL_PRODUCTS = "https://ecommerceclone1.onrender.com/api/productsroute";
 
 const YouMayLikeProducts = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { fetchQuickPicks } from "../../utils/supabaseApi.js";
 
@@ -63,8 +63,9 @@ function Stores({
       {/* Items */}
       <div className={containerClass}>
         {picks.map((pick) => (
-          <div key={pick.id} className={itemClass}>
-            {/* Card Style Image */}
+          <Link to={`/quick-pick/${pick.id}`} key={pick.id} className={itemClass}>
+            <div key={pick.id}>
+              {/* Card Style Image */}
               <div className="w-full rounded-md overflow-hidden">
                 <img
                   src={pick.image_url}
@@ -76,12 +77,13 @@ function Stores({
                   }}
                 />
               </div>
-          
-            {/* Label */}
-            <p className="mt-1 text-md font-semibold text-gray-700 text-center truncate w-full">
-              {pick.name}
-            </p>
-          </div>
+
+              {/* Label */}
+              <p className="mt-1 text-md font-semibold text-gray-700 text-center truncate w-full">
+                {pick.name}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

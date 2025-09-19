@@ -66,20 +66,21 @@ export const getQuickPickGroupsForProduct = async (req, res) => {
 
 // 4️⃣ Get all products in a Quick Pick Group
 export const getProductsForQuickPickGroup = async (req, res) => {
-  try {
-    const { quick_pick_group_id } = req.params;
+  try {
+    const { quick_pick_group_id } = req.params;
 
-    const { data, error } = await supabase
-      .from('quickpick_group_product')
-      .select('product_id, products (id, name, price, rating, image, category)')
-      .eq('quick_pick_group_id', quick_pick_group_id);
+    const { data, error } = await supabase
+      .from('quickpick_group_product')
+      // 👇 Add 'discount' and 'uom' to this line
+      .select('product_id, products (id, name, price, rating, image, category, discount, uom)')
+      .eq('quick_pick_group_id', quick_pick_group_id);
 
-    if (error) return res.status(500).json({ error: error.message });
+    if (error) return res.status(500).json({ error: error.message });
 
-    res.status(200).json(data);
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
-  }
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
 // 5️⃣ Bulk map products by names and Quick Pick Group name

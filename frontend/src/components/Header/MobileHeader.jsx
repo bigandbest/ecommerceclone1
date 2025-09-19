@@ -68,6 +68,8 @@ const MobileHeader = ({ toggleMobileMenu }) => {
 
     if (isMobile && location.pathname.startsWith("/subcategories")) return null;
     if (location.pathname.startsWith("/category")) return null;
+    if (location.pathname.startsWith("/quick-pick")) return null;
+    if (location.pathname.startsWith("/b&b")) return null;
     if (location.pathname == "/all") {
         return null;
     }

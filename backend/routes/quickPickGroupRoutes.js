@@ -6,7 +6,8 @@ import {
   updateQuickPickGroup, 
   deleteQuickPickGroup, 
   getAllQuickPickGroups, 
-  getQuickPickGroupById 
+  getQuickPickGroupById,
+  getGroupsByQuickPickId 
 } from "../controller/quickPickGroupController.js";
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.put("/update/:id", upload.any(), updateQuickPickGroup);
 router.delete("/delete/:id", deleteQuickPickGroup);
 router.get("/list", getAllQuickPickGroups);
 router.get("/:id", getQuickPickGroupById);
+router.get("/by-quick-pick/:quickPickId", getGroupsByQuickPickId);
 
 export default router;

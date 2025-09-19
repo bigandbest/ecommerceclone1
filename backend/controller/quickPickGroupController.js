@@ -143,3 +143,20 @@ export async function getQuickPickGroupById(req, res) {
     res.status(500).json({ success: false, error: err.message });
   }
 }
+
+// Get all Quick Pick Groups for a specific Quick Pick
+export async function getGroupsByQuickPickId(req, res) {
+  try {
+    const { quickPickId } = req.params;
+    const { data, error } = await supabase
+      .from("quick_pick_group")
+      .select("*")
+      .eq("quick_pick_id", quickPickId);
+
+    if (error) throw error;
+    
+    res.status(200).json({ success: true, quickPickGroups: data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+}

@@ -23,7 +23,7 @@ export default function StoreAdmin() {
   const fetchStores = async () => {
     try {
       // The backend route for getting all stores is just "/", so use the base URL.
-      const res = await axios.get(API_BASE_URL); 
+      const res = await axios.get(`${API_BASE_URL}/fetch`); 
       setStores(res.data.stores);
     } catch (err) {
       console.error("Fetch stores error:", err);
@@ -45,7 +45,7 @@ export default function StoreAdmin() {
       if (editingId) {
         // Update an existing store entry.
         // Backend route: PUT /api/stores/:id
-        await axios.put(`${API_BASE_URL}/${editingId}`, formData, {
+        await axios.put(`${API_BASE_URL}/update/${editingId}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -53,7 +53,7 @@ export default function StoreAdmin() {
       } else {
         // Add a new store entry.
         // Backend route: POST /api/stores/
-        await axios.post(API_BASE_URL, formData, {
+        await axios.post(`${API_BASE_URL}/add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -76,7 +76,7 @@ export default function StoreAdmin() {
     if (!window.confirm("Are you sure you want to delete this store?")) return;
     try {
       // Backend route: DELETE /api/stores/:id
-      await axios.delete(`${API_BASE_URL}/${id}`);
+      await axios.delete(`${API_BASE_URL}/delete/${id}`);
       fetchStores();
     } catch (err) {
       console.error("Delete error:", err);

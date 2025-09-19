@@ -71,7 +71,7 @@ export const getProductsForBandBGroup = async (req, res) => {
 
     const { data, error } = await supabase
       .from('bnb_group_product')
-      .select('product_id, products (id, name, price, rating, image, category)')
+      .select('product_id, products (id, name, price, rating, image, category, uom, discount)')
       .eq('bnb_group_id', bnb_group_id);
 
     if (error) return res.status(500).json({ error: error.message });

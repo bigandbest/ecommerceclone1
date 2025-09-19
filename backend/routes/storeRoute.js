@@ -5,9 +5,9 @@ import { addStore, updateStore, deleteStore, getAllStores } from "../controller/
 const router = express.Router();
 const upload = multer(); // memory storage by default
 
-router.post("/", upload.single("image"), addStore);
-router.put("/:id", upload.single("image"), updateStore);
-router.delete("/:id", deleteStore);
-router.get("/", getAllStores);
+router.post("/add", upload.single("image"), addStore);
+router.put("/update/:id", upload.single("image"), updateStore);
+router.delete("/delete/:id", deleteStore);
+router.get("/fetch", getAllStores);
 
 export default router;

@@ -44,7 +44,7 @@ const BbmPicks = ({
   
   // Display a loading message while fetching
   if (loading) {
-      return <p className="p-3 text-sm">Loading {title}...</p>;
+      return <p className="p-3 text-sm">Loading Shop By Store...</p>;
   }
 
   // Display an error message if the fetch fails

@@ -137,3 +137,21 @@ export async function getBandBGroupById(req, res) {
     res.status(500).json({ success: false, error: err.message });
   }
 }
+
+// 👇 NEW FUNCTION TO ADD
+// Get all B&B Groups for a specific B&B
+export async function getGroupsByBandBId(req, res) {
+  try {
+    const { bnbId } = req.params;
+    const { data, error } = await supabase
+      .from("bnb_group")
+      .select("*")
+      .eq("bnb_id", bnbId);
+
+    if (error) throw error;
+    
+    res.status(200).json({ success: true, bandbGroups: data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+}

@@ -1937,17 +1937,17 @@ export async function migrateUserAddresses(userId) {
   }
 }
 
-const API_BASE = "https://ecommerceclone1.onrender.com/api"; 
+const API_BASE = "http://localhost:8000/api"; 
 
 export async function fetchStores() {
-  const res = await fetch(`${API_BASE}/stores`);
+  const res = await fetch(`${API_BASE}/stores/fetch`);
   const data = await res.json();
   if (!data.success) throw new Error(data.error);
   return data.stores;
 }
 
 export async function addStore(formData) {
-  const res = await fetch(`${API_BASE}/stores`, {
+  const res = await fetch(`${API_BASE}/stores/add`, {
     method: "POST",
     body: formData,
   });
@@ -1957,7 +1957,7 @@ export async function addStore(formData) {
 }
 
 export async function updateStore(id, formData) {
-  const res = await fetch(`${API_BASE}/stores/${id}`, {
+  const res = await fetch(`${API_BASE}/stores/update/${id}`, {
     method: "PUT",
     body: formData,
   });
@@ -1967,7 +1967,7 @@ export async function updateStore(id, formData) {
 }
 
 export async function deleteStore(id) {
-  const res = await fetch(`${API_BASE}/stores/${id}`, { method: "DELETE" });
+  const res = await fetch(`${API_BASE}/stores/delete/${id}`, { method: "DELETE" });
   const data = await res.json();
   if (!data.success) throw new Error(data.error);
   return true;
@@ -1984,6 +1984,29 @@ export async function fetchQuickPicks() {
   const response = await axios.get(`${API_URL}/list`);
   // aaxios wraps the JSON response in a 'data' property
   return response.data.quickPicks;
+}
+
+// NEW: Fetches all groups for a specific Quick Pick ID
+export async function fetchGroupsForQuickPick(quickPickId) {
+  // This assumes your API route is /api/quick-pick-groups/by-quick-pick/:quickPickId
+  const response = await fetch(`http://localhost:8000/api/quick-pick-group/by-quick-pick/${quickPickId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch quick pick groups");
+  }
+  const data = await response.json();
+  return data.quickPickGroups;
+}
+
+// NEW: Fetches all products for a specific Quick Pick Group ID
+export async function fetchProductsForGroup(groupId) {
+  // This assumes your API route is /api/quick-pick-group-products/products-for-group/:quick_pick_group_id
+  const response = await fetch(`http://localhost:8000/api/quick-pick-group-product/getProductsByGroup/${groupId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  const data = await response.json();
+  // The data is nested, so we extract the product details
+  return data.map(item => item.products);
 }
 
 // Add new quick pick
@@ -2070,6 +2093,42 @@ export async function editRecommendedStore(id, formData) {
 export async function deleteRecommendedStore(id) {
   await axios.delete(`${API_URL_New}/delete/${id}`);
   return true;
+}
+
+// --- B&B Section Functions ---
+
+// 1. Fetches all main B&B items
+export async function fetchBandBs() {
+    const response = await fetch(`http://localhost:8000/api/bnb/list`);
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to fetch B&B items');
+    }
+    const data = await response.json();
+    return data.bandbs; // Corresponds to the key in your b&bController.js
+}
+
+// 2. Fetches all groups for a specific B&B ID
+export async function fetchGroupsForBandB(bnbId) {
+    const response = await fetch(`http://localhost:8000/api/b&b-group/by-bnb/${bnbId}`);
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to fetch B&B groups');
+    }
+    const data = await response.json();
+    return data.bandbGroups; // Corresponds to the key in your b&bGroupController.js
+}
+
+// 3. Fetches all products for a specific B&B Group ID
+export async function fetchProductsForBandBGroup(groupId) {
+    const response = await fetch(`http://localhost:8000/api/b&b-group-product/getProductsByGroup/${groupId}`);
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to fetch B&B products');
+    }
+    const data = await response.json();
+    // The data is nested, so we extract the product details
+    return data.map(item => item.products).filter(p => p);
 }
 
 /* this is a testing commit */
