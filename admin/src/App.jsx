@@ -53,6 +53,7 @@ import BnbGroupProducts from "./Pages/B&b/B&bGroupProducts.jsx";
 import SavingZone from "./Pages/SavingZone/SavingZone.jsx";
 import SavingZoneGroupPage from "./Pages/SavingZone/SavingZoneGroup.jsx";
 import SavingZoneGroupProducts from "./Pages/SavingZone/SavingZoneGroupProducts.jsx";
+import YouMayLikeProducts from "./Pages/YouMayLike/YouMayLikeProducts.jsx";
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -235,6 +236,10 @@ function App() {
         {
           path: "/brandproducts/:id",
           element: <BrandProducts />,
+        },
+        {
+          path: "/youMayLikeProducts/:id",
+          element: <YouMayLikeProducts />,
         },
         {
           path: "/b&b",

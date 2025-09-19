@@ -101,6 +101,11 @@ const Sidebar = ({ isOpen = true }) => {
       path: "/brands",
     },
     {
+      title: "YouMayLike",
+      icon: <FaTrademark />,
+      path: "/youMayLikeProducts/:id",
+    },
+    {
       title: "Categories",
       icon: <MdCategory />,
       path: "/categories",
