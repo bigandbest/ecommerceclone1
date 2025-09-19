@@ -1937,7 +1937,7 @@ export async function migrateUserAddresses(userId) {
   }
 }
 
-const API_BASE = "http://localhost:8000/api"; 
+const API_BASE = "https://ecommerceclone1.onrender.com/api"; 
 
 export async function fetchStores() {
   const res = await fetch(`${API_BASE}/stores/fetch`);
@@ -1989,7 +1989,7 @@ export async function fetchQuickPicks() {
 // NEW: Fetches all groups for a specific Quick Pick ID
 export async function fetchGroupsForQuickPick(quickPickId) {
   // This assumes your API route is /api/quick-pick-groups/by-quick-pick/:quickPickId
-  const response = await fetch(`http://localhost:8000/api/quick-pick-group/by-quick-pick/${quickPickId}`);
+  const response = await fetch(`https://ecommerceclone1.onrender.com/api/quick-pick-group/by-quick-pick/${quickPickId}`);
   if (!response.ok) {
     throw new Error("Failed to fetch quick pick groups");
   }
@@ -2000,7 +2000,7 @@ export async function fetchGroupsForQuickPick(quickPickId) {
 // NEW: Fetches all products for a specific Quick Pick Group ID
 export async function fetchProductsForGroup(groupId) {
   // This assumes your API route is /api/quick-pick-group-products/products-for-group/:quick_pick_group_id
-  const response = await fetch(`http://localhost:8000/api/quick-pick-group-product/getProductsByGroup/${groupId}`);
+  const response = await fetch(`https://ecommerceclone1.onrender.com/api/quick-pick-group-product/getProductsByGroup/${groupId}`);
   if (!response.ok) {
     throw new Error("Failed to fetch products");
   }
@@ -2099,7 +2099,7 @@ export async function deleteRecommendedStore(id) {
 
 // 1. Fetches all main B&B items
 export async function fetchBandBs() {
-    const response = await fetch(`http://localhost:8000/api/bnb/list`);
+    const response = await fetch(`https://ecommerceclone1.onrender.com/api/bnb/list`);
     if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || 'Failed to fetch B&B items');
@@ -2110,7 +2110,7 @@ export async function fetchBandBs() {
 
 // 2. Fetches all groups for a specific B&B ID
 export async function fetchGroupsForBandB(bnbId) {
-    const response = await fetch(`http://localhost:8000/api/b&b-group/by-bnb/${bnbId}`);
+    const response = await fetch(`https://ecommerceclone1.onrender.com/api/b&b-group/by-bnb/${bnbId}`);
     if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || 'Failed to fetch B&B groups');
@@ -2121,7 +2121,7 @@ export async function fetchGroupsForBandB(bnbId) {
 
 // 3. Fetches all products for a specific B&B Group ID
 export async function fetchProductsForBandBGroup(groupId) {
-    const response = await fetch(`http://localhost:8000/api/b&b-group-product/getProductsByGroup/${groupId}`);
+    const response = await fetch(`https://ecommerceclone1.onrender.com/api/b&b-group-product/getProductsByGroup/${groupId}`);
     if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || 'Failed to fetch B&B products');
