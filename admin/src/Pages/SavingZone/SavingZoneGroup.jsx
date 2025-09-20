@@ -6,8 +6,8 @@ import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import { notifications } from '@mantine/notifications';
 import { supabaseAdmin } from '../../utils/supabase.js';
 
-const API_URL = "http://localhost:8000/api/saving-zone-group";
-const SAVING_ZONE_API_URL = "http://localhost:8000/api/saving-zone";
+const API_URL = "https://ecommerceclone1.onrender.com/api/saving-zone-group";
+const SAVING_ZONE_API_URL = "https://ecommerceclone1.onrender.com/api/saving-zone";
 
 // Component to handle adding/editing a Saving Zone Group
 const SavingZoneGroupForm = ({ initialData, onSave, onCancel, savingZoneId }) => {

@@ -2033,6 +2033,65 @@ export async function deleteQuickPick(id) {
   return true;
 }
 
+// The API endpoints are set for your Saving Zone services
+const API_SZ_URL = "https://ecommerceclone1.onrender.com/api/saving-zone";
+const SZ_GROUP_API_URL = "https://ecommerceclone1.onrender.com/api/saving-zone-group";
+const SZ_PRODUCT_API_URL = "https://ecommerceclone1.onrender.com/api/saving-zone-group-product";
+
+// Corresponds to: fetchQuickPicks
+// Fetches all Saving Zones
+export async function getAllSavingZones() {
+  const response = await axios.get(`${API_SZ_URL}/list`);
+  return response.data.savingZones;
+}
+
+// Corresponds to: fetchGroupsForQuickPick
+// Fetches all groups for a specific Saving Zone ID
+export async function getGroupsBySavingZoneId(savingZoneId) {
+  const response = await fetch(`https://ecommerceclone1.onrender.com/api/saving-zone-group/getGroupsBySavingZoneId/${savingZoneId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch saving zone groups");
+  }
+  const data = await response.json();
+  return data.savingZoneGroups;
+}
+
+// Corresponds to: fetchProductsForGroup
+// Fetches all products for a specific Saving Zone Group ID
+export async function getProductsForSavingZoneGroup(groupId) {
+  const response = await fetch(`${SZ_PRODUCT_API_URL}/getProductsByGroup/${groupId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  const data = await response.json();
+  // The data is nested, so we extract the product details
+  return data.map(item => item.products);
+}
+
+// Corresponds to: addQuickPick
+// Add a new Saving Zone
+export async function addSavingZone(formData) {
+  const response = await axios.post(`${API_SZ_URL}/add`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data.savingZone;
+}
+
+// Corresponds to: editQuickPick
+// Edit an existing Saving Zone
+export async function updateSavingZone(id, formData) {
+  const response = await axios.put(`${API_SZ_URL}/update/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data.savingZone;
+}
+
+// Corresponds to: deleteQuickPick
+// Delete a Saving Zone
+export async function deleteSavingZone(id) {
+  await axios.delete(`${API_SZ_URL}/delete/${id}`);
+  return true; // Return true to indicate success
+}
 
 // The base URL for your recommended stores API
 const API_URL_New = "https://ecommerceclone1.onrender.com/api/recommended-stores";

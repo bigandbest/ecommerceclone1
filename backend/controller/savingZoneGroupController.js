@@ -137,3 +137,20 @@ export async function getSavingZoneGroupById(req, res) {
     res.status(500).json({ success: false, error: err.message });
   }
 }
+
+// Get all Saving Zone Groups for a specific Saving Zone
+export async function getGroupsBySavingZoneId(req, res) {
+  try {
+    const { savingZoneId } = req.params;
+    const { data, error } = await supabase
+      .from("saving_zone_group")
+      .select("*")
+      .eq("saving_zone_id", savingZoneId);
+
+    if (error) throw error;
+    
+    res.status(200).json({ success: true, savingZoneGroups: data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+}

@@ -5,9 +5,9 @@ import { FaTrash, FaPlus, FaTimes } from 'react-icons/fa';
 import { notifications } from '@mantine/notifications';
 import { getAllProducts } from '../../utils/supabaseApi';
 
-const API_URL_PRODUCTS = 'http://localhost:8000/api/saving-zone-group-product';
-const API_URL_ALL_PRODUCTS = 'http://localhost:8000/api/productsroute';
-const API_URL_GROUP = 'http://localhost:8000/api/saving-zone-group';
+const API_URL_PRODUCTS = 'https://ecommerceclone1.onrender.com/api/saving-zone-group-product';
+const API_URL_ALL_PRODUCTS = 'https://ecommerceclone1.onrender.com/api/productsroute';
+const API_URL_GROUP = 'https://ecommerceclone1.onrender.com/api/saving-zone-group';
 
 const SavingZoneGroupProducts = () => {
   const { id } = useParams();

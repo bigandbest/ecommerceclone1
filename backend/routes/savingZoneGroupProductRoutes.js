@@ -5,6 +5,7 @@ import {
   getSavingZoneGroupsForProduct,
   getProductsForSavingZoneGroup,
   bulkMapByNames,
+  getGroupsBySavingZoneId // Make sure this is imported
 } from "../controller/savingZoneGroupProductController.js";
 
 const router = express.Router();
@@ -27,4 +28,7 @@ router.get(
 // Route to bulk map products to a saving zone group by names
 router.post("/bulk-map", bulkMapByNames);
 
-export default router;
+// New: Route to get all groups for a specific saving zone
+router.get("/getGroupsBySavingZone/:savingZoneId", getGroupsBySavingZoneId);
+
+export default router;  

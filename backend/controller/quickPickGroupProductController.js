@@ -64,7 +64,7 @@ export const getQuickPickGroupsForProduct = async (req, res) => {
   }
 };
 
-// 4️⃣ Get all products in a Quick Pick Group
+// 4️⃣ Get all products in a Quick Pick Group thiss
 export const getProductsForQuickPickGroup = async (req, res) => {
   try {
     const { quick_pick_group_id } = req.params;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 
 // Base URL for your saving zone backend APIs
-const API_URL = 'http://localhost:8000/api/saving-zone';
+const API_URL = 'https://ecommerceclone1.onrender.com/api/saving-zone';
 
 // Component to handle adding/editing a Saving Zone
 const SavingZoneForm = ({ initialData, onSave, onCancel }) => {
